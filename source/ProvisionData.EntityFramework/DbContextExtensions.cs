@@ -23,11 +23,32 @@
  *
  *******************************************************************************/
 
-using System.Diagnostics.CodeAnalysis;
+namespace ProvisionData.EntityFramework
+{
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
 
-[assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "It makes for pretier Build Definitions.")]
-[assembly: SuppressMessage("Design", "RCS1110:Declare type inside namespace.", Justification = "It makes for pretier Build Definitions.")]
-[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "It makes for pretier Build Definitions.")]
-[assembly: SuppressMessage("Readability", "RCS1018:Add default access modifier.", Justification = "It makes for pretier Build Definitions.")]
-[assembly: SuppressMessage("Redundancy", "RCS1213:Remove unused member declaration.", Justification = "It makes for pretier Build Definitions.")]
-[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "It makes for pretier Build Definitions.")]
+    public static class DbContextExtensions
+    {
+        // https://www.tabsoverspaces.com/233797-convenient-method-for-explicit-lazy-loading-in-entity-framework-core-or-entity-framework-6
+        public static void LoadRelated<TEntity, TReference>(this DbContext context, TEntity entity, Expression<Func<TEntity, TReference>> selector)
+            where TEntity : class
+            where TReference : class
+        {
+            var reference = context.Entry(entity).Reference(selector);
+            if (!reference.IsLoaded)
+                reference.Load();
+        }
+
+        public static void LoadRelated<TEntity, TReference>(this DbContext context, TEntity entity, Expression<Func<TEntity, IEnumerable<TReference>>> selector)
+            where TEntity : class
+            where TReference : class
+        {
+            var collection = context.Entry(entity).Collection(selector);
+            if (!collection.IsLoaded)
+                collection.Load();
+        }
+    }
+}
