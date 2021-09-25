@@ -1,15 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
-    <RootNamespace>ProvisionData.EntityFrameworkCore</RootNamespace>
-    <AssemblyName>ProvisionData.EntityFrameworkCore</AssemblyName>
-    <IsPackable>true</IsPackable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0</TargetFrameworks>
+		<RootNamespace>ProvisionData.EntityFrameworkCore</RootNamespace>
+		<AssemblyName>ProvisionData.EntityFrameworkCore</AssemblyName>
+		<Title>Provision Data</Title>
+		<Description>Just basic stuff</Description>
+		<Product>Provision Data</Product>
+		<Authors>Doug Wilson</Authors>
+		<Company>Provision Data Systems Inc.</Company>
+		<Copyright>Copyright 2021</Copyright>
+		<ApplicationIcon>..\..\pdsi.ico</ApplicationIcon>
+		<PackageTags></PackageTags>
+		<RepositoryType>Git</RepositoryType>
+		<RepositoryUrl>https://github.com/provisiondata/ProvisionData.EntityFrameworkCore.git</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageProjectUrl>https://github.com/provisiondata/ProvisionData.EntityFrameworkCore</PackageProjectUrl>
+		<PackageIcon>pdsi.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
-  </ItemGroup>
+		<LangVersion>latest</LangVersion>
+		<DebugType>full</DebugType>
+		<IsPackable>true</IsPackable>
+
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<NeutralResourcesLanguage>en-US</NeutralResourcesLanguage>
+
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<NoWarn>1701;1702;NU5105</NoWarn>
+
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\pdsi.png" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="5.7.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.10.56">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>

@@ -1,12 +1,12 @@
 ﻿/*******************************************************************************
  * MIT License
  *
- * Copyright 2020 Provision Data Systems Inc.  https://provisiondata.com
+ * Copyright 2021 Provision Data Systems Inc.  https://provisiondata.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * the rights to use, copy, modify, merge, publish, distribute, sub-license,
  * and/or sell copies of the Software, and to permit persons to whom the 
  * Software is furnished to do so, subject to the following conditions:
  *
@@ -80,7 +80,9 @@ namespace ProvisionData.EntityFrameworkCore.Auditing
 				String Hash(Object obj, Byte[] salt) => BitConverter.ToString(hasher.ComputeHash(GetBytes(obj.ToString(), salt))).Replace("-", "");
 
 				if (entity.State == EntityState.Detached || entity.State == EntityState.Unchanged)
+				{
 					continue;
+				}
 
 				var salt = Guid.NewGuid().ToByteArray();
 				var entry = new AuditEntryMetaData(entity)
@@ -107,7 +109,9 @@ namespace ProvisionData.EntityFrameworkCore.Auditing
 					}
 
 					if (IsIgnored(property))
+					{
 						continue;
+					}
 
 					var isSensitive = IsSensitive(property);
 					switch (entity.State)
@@ -172,7 +176,9 @@ namespace ProvisionData.EntityFrameworkCore.Auditing
 				var info = GetPropertyInfo(property);
 
 				if (property.Metadata.IsConcurrencyToken || info is null || info.PropertyType.IsArray)
+				{
 					return true;
+				}
 
 				var attr = info.GetCustomAttribute<AuditAttribute>();
 				var result = attr is not null && attr.Ignore == true;
@@ -192,7 +198,9 @@ namespace ProvisionData.EntityFrameworkCore.Auditing
 			{
 				var info = GetPropertyInfo(property);
 				if (info is null)
+				{
 					return false;
+				}
 
 				var attr = info.GetCustomAttribute<AuditAttribute>();
 				var result = attr is not null && attr.Sensitive == true;

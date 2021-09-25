@@ -1,12 +1,12 @@
 ﻿/*******************************************************************************
  * MIT License
  *
- * Copyright 2020 Provision Data Systems Inc.  https://provisiondata.com
+ * Copyright 2021 Provision Data Systems Inc.  https://provisiondata.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * the rights to use, copy, modify, merge, publish, distribute, sub-license,
  * and/or sell copies of the Software, and to permit persons to whom the 
  * Software is furnished to do so, subject to the following conditions:
  *
@@ -25,30 +25,34 @@
 
 namespace ProvisionData.EntityFrameworkCore
 {
-    using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
+	using Microsoft.EntityFrameworkCore;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq.Expressions;
 
-    public static class DbContextExtensions
-    {
-        // https://www.tabsoverspaces.com/233797-convenient-method-for-explicit-lazy-loading-in-entity-framework-core-or-entity-framework-6
-        public static void LoadRelated<TEntity, TReference>(this DbContext context, TEntity entity, Expression<Func<TEntity, TReference>> selector)
-            where TEntity : class
-            where TReference : class
-        {
-            var reference = context.Entry(entity).Reference(selector);
-            if (!reference.IsLoaded)
-                reference.Load();
-        }
+	public static class DbContextExtensions
+	{
+		// https://www.tabsoverspaces.com/233797-convenient-method-for-explicit-lazy-loading-in-entity-framework-core-or-entity-framework-6
+		public static void LoadRelated<TEntity, TReference>(this DbContext context, TEntity entity, Expression<Func<TEntity, TReference>> selector)
+			where TEntity : class
+			where TReference : class
+		{
+			var reference = context.Entry(entity).Reference(selector);
+			if (!reference.IsLoaded)
+			{
+				reference.Load();
+			}
+		}
 
-        public static void LoadRelated<TEntity, TReference>(this DbContext context, TEntity entity, Expression<Func<TEntity, IEnumerable<TReference>>> selector)
-            where TEntity : class
-            where TReference : class
-        {
-            var collection = context.Entry(entity).Collection(selector);
-            if (!collection.IsLoaded)
-                collection.Load();
-        }
-    }
+		public static void LoadRelated<TEntity, TReference>(this DbContext context, TEntity entity, Expression<Func<TEntity, IEnumerable<TReference>>> selector)
+			where TEntity : class
+			where TReference : class
+		{
+			var collection = context.Entry(entity).Collection(selector);
+			if (!collection.IsLoaded)
+			{
+				collection.Load();
+			}
+		}
+	}
 }
