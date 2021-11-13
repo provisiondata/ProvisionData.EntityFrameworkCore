@@ -34,7 +34,7 @@ namespace ProvisionData.EntityFrameworkCore
 	public class PostgreSQLTestDbContextFactory : IDesignTimeDbContextFactory<TestDbContext>
 	{
 		// docker run --name integration-testing-postgres -e POSTGRES_PASSWORD=password -p 5432:5432/tcp -d postgres
-		public const String ConnectionString = "Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=password;";
+		public const String ConnectionString = "Host=localhost;Port=5432;Database=postgres;User Id=postgres;Password=password;";
 
 		public static DbContextOptions<TestDbContext> GetOptions()
 		{
