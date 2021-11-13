@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net5.0</TargetFrameworks>
+		<TargetFrameworks>net6.0</TargetFrameworks>
 		<RootNamespace>ProvisionData.EntityFrameworkCore</RootNamespace>
 		<AssemblyName>ProvisionData.EntityFrameworkCore</AssemblyName>
 		<Title>Provision Data</Title>
@@ -38,12 +38,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\pdsi.png" Pack="true" PackagePath="\"/>
+		<None Include="..\..\pdsi.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -51,11 +51,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.10.56">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
