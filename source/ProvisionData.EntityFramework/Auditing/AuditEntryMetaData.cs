@@ -53,7 +53,7 @@ namespace ProvisionData.EntityFrameworkCore.Auditing
 
 		public AuditEntry ToDto() => new()
 		{
-			DateTime = DateTime,
+			DateTime = DateTime.SpecifyKind(DateTime, DateTimeKind.Utc),
 			User = Username,
 			Action = Action,
 			Entity = Entity,

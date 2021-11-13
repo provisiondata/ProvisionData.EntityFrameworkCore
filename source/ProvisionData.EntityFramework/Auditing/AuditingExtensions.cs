@@ -76,7 +76,7 @@ namespace ProvisionData.EntityFrameworkCore.Auditing
 					continue;
 				}
 
-				using var hasher = new SHA256Managed();
+				using var hasher = SHA256.Create();
 				String Hash(Object obj, Byte[] salt) => BitConverter.ToString(hasher.ComputeHash(GetBytes(obj.ToString(), salt))).Replace("-", "");
 
 				if (entity.State == EntityState.Detached || entity.State == EntityState.Unchanged)

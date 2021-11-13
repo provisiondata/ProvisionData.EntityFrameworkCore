@@ -23,25 +23,27 @@
 *
 *******************************************************************************/
 
-namespace ProvisionData.EntityFrameworkCore.Auditing
-{
-	using Respawn;
-	using System.Data.Common;
-	using System.Threading.Tasks;
-	using Xunit.Abstractions;
+// Npgsql broke support for EFCore, with their changes to DateTime handling in 6.0.
 
-	public class PostgresAuditingTests : AuditingTests
-	{
-		private static readonly Checkpoint Checkpoint = new()
-		{
-			SchemasToInclude = new[] { "public" },
-			DbAdapter = DbAdapter.Postgres
-		};
+//namespace ProvisionData.EntityFrameworkCore.Auditing
+//{
+//	using Respawn;
+//	using System.Data.Common;
+//	using System.Threading.Tasks;
+//	using Xunit.Abstractions;
 
-		public PostgresAuditingTests(ITestOutputHelper output)
-			: base(PostgreSQLTestDbContextFactory.GetOptions(), output) { }
+//	public class PostgresAuditingTests : AuditingTests
+//	{
+//		private static readonly Checkpoint Checkpoint = new()
+//		{
+//			SchemasToInclude = new[] { "public" },
+//			DbAdapter = DbAdapter.Postgres
+//		};
 
-		protected override async Task Respawn(DbConnection connection)
-			=> await Checkpoint.Reset(connection);
-	}
-}
+//		public PostgresAuditingTests(ITestOutputHelper output)
+//			: base(PostgreSQLTestDbContextFactory.GetOptions(), output) { }
+
+//		protected override async Task Respawn(DbConnection connection)
+//			=> await Checkpoint.Reset(connection);
+//	}
+//}
